@@ -1,0 +1,20 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Resources:
+  TestFunction:
+   Type: AWS::Serverless::Function
+   Properties:
+      CodeUri: s3://SAMTemplate/hello-dev.jar
+      Handler: com.serverless.Handler
+      Runtime: java8
+      FunctionName: Myfunction
+      Events:
+       MyTimeApi:
+         Type: Api
+         Properties:
+           Path: /Resource
+           Method: post
+      Environment:
+        Variables: 
+          S3_BUCKET: SAMTemplate
+    
